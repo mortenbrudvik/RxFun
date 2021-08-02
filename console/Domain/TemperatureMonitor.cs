@@ -5,7 +5,7 @@ namespace console.Domain
 {
     internal class TemperatureMonitor : IDisposable
     {
-        private IDisposable _subscription;
+        private readonly IDisposable _subscription;
 
         public TemperatureMonitor(TemperatureService temperatureService )
         {
