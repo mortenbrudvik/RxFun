@@ -29,9 +29,7 @@ namespace console
             
             CreatingObservableSequences.Run();
             CreatingObservablesFromAsyncTypes.Run();
-
-            
-            
+            ControllingObservableObserverLifetime.Run();
 
             Console.WriteLine("Hello World!");
             Console.ReadLine();
