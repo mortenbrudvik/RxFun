@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
+using System.Threading;
 using System.Threading.Tasks;
 using console.Domain;
 using console.Extensions;
@@ -30,11 +32,14 @@ namespace console
             CreatingObservableSequences.Run();
             CreatingObservablesFromAsyncTypes.Run();
             ControllingObservableObserverLifetime.Run();
+            ControllingTheObservableTemperature.Run();
+            
+
+
+
 
             Console.WriteLine("Hello World!");
             Console.ReadLine();
         }
-
-     
     }
 }
