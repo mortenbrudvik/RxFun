@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace console.SearchEngine
+namespace console.Domain.SearchEngine
 {
     public class SearchEngineA : ISearchEngine
     {

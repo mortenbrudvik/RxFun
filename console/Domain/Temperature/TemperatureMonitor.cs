@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reactive.Linq;
 
-namespace console.Domain
+namespace console.Domain.Temperature
 {
     internal class TemperatureMonitor : IDisposable
     {

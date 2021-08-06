@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
+using console.Domain.SearchEngine;
 using console.Extensions;
-using console.SearchEngine;
 
 namespace console
 {

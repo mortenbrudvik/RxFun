@@ -1,4 +1,4 @@
-namespace console.Domain
+namespace console.Domain.Temperature
 {
     public class TemperatureChange
     {

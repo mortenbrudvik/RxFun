@@ -1,6 +1,6 @@
 using System;
 
-namespace console.Domain
+namespace console.Domain.Temperature
 {
     internal class TemperatureService
     {

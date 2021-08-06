@@ -11,8 +11,8 @@ using System.Reactive.Threading.Tasks;
 using System.Threading;
 using System.Threading.Tasks;
 using console.Domain;
+using console.Domain.Temperature;
 using console.Extensions;
-using console.SearchEngine;
 
 namespace console
 {
@@ -29,16 +29,27 @@ namespace console
             temperatureService.Notify(new Temperature(){City = "Bergen", Degrees = 10.3});
             temperatureService.Notify(new Temperature(){City = "Oslo", Degrees = 12.1});
             
-            CreatingObservableSequences.Run();
-            CreatingObservablesFromAsyncTypes.Run();
-            ControllingObservableObserverLifetime.Run();
-            ControllingTheObservableTemperature.Run();
+            // CreatingObservableSequences.Run();
+            // CreatingObservablesFromAsyncTypes.Run();
+            // ControllingObservableObserverLifetime.Run();
+            // ControllingTheObservableTemperature.Run();
+            
+            // Aggregate
+            Observable.Range(1, 5)
+                .Aggregate(1, (accumulate, currItem) => accumulate * currItem)
+                .SubscribeConsole("Aggregate");
+            
+            // Scan
+            Observable.Range(1, 5)
+                .Scan(1, (accumulate, currItem) => accumulate * currItem)
+                .SubscribeConsole("Scan");
+          
+            
             
 
 
 
 
-            Console.WriteLine("Hello World!");
             Console.ReadLine();
         }
     }
