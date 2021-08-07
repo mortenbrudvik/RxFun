@@ -25,6 +25,16 @@ namespace console
                 observer.OnCompleted();
             }));
 
+        public static IObservable<int> GenerateRandom(int amount, int min, int max, Func<Random, int> intervalInMs)
+        {
+            var random = new Random();
+            return Observable.Generate(
+                0,
+                x => x < amount,
+                x => x + 1,
+                _ => random.Next(min, max),
+                _ => TimeSpan.FromMilliseconds(random.Next(1, 10) * 100));
+        }
 
     }
 }

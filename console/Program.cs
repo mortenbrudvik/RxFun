@@ -14,6 +14,8 @@ using console.Domain;
 using console.Domain.Temperature;
 using console.Extensions;
 
+using static console.NumberGenerator;
+
 namespace console
 {
     class Program
@@ -29,10 +31,11 @@ namespace console
             temperatureService.Notify(new Temperature(){City = "Bergen", Degrees = 10.3});
             temperatureService.Notify(new Temperature(){City = "Oslo", Degrees = 12.1});
             
-            // CreatingObservableSequences.Run();
-            // CreatingObservablesFromAsyncTypes.Run();
-            // ControllingObservableObserverLifetime.Run();
-            // ControllingTheObservableTemperature.Run();
+            CreatingObservableSequences.Run();
+            CreatingObservablesFromAsyncTypes.Run();
+            ControllingObservableObserverLifetime.Run();
+            ControllingTheObservableTemperature.Run();
+            PartitioningAndCombining.Run();
             
             // Aggregate
             Observable.Range(1, 5)
@@ -43,7 +46,10 @@ namespace console
             Observable.Range(1, 5)
                 .Scan(1, (accumulate, currItem) => accumulate * currItem)
                 .SubscribeConsole("Scan");
-          
+
+            
+            
+            
             
             
 
