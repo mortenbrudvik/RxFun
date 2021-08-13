@@ -1,11 +1,21 @@
 ﻿using System;
 using System.Reactive.Linq;
 using System.Threading;
+using console.Common;
 
 namespace console.Extensions
 {
     public static class ObservableExtension
     {
+        public static IObservable<T> AsWeakObservable<T>(this IObservable<T> source) =>
+            Observable.Create<T>(o =>
+            {
+                var weakObserverProxy = new WeakObserverProxy<T>(o);
+                var subscription = source.Subscribe(weakObserverProxy);
+                weakObserverProxy.SetSubscription(subscription);
+                return weakObserverProxy.AsDisposable();
+            });
+        
         public static IDisposable SubscribeConsole<T>(this IObservable<T> observable, string name = "") =>
             observable.Subscribe(new ConsoleObserver<T>(name));
 
