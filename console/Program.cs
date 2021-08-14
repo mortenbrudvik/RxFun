@@ -1,28 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
-using System.Reactive.Threading.Tasks;
-using System.Threading;
 using System.Threading.Tasks;
-using console.Domain;
 using console.Domain.Temperature;
 using console.Extensions;
-
-using static console.NumberGenerator;
 
 namespace console
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var temperatureService = new TemperatureService();
             var monitor = new TemperatureMonitor(temperatureService);
@@ -42,12 +30,22 @@ namespace console
             WorkingWithConcurrency.Run();
             ErrorHandlingAndRecovery.Run();
             
+            // Disposable.create - Makes sure that isBusy is set to false even when an exception occur
+            var isBusy = true;
+            var newsItems = Enumerable.Empty<string>();
+            using (Disposable.Create(() => isBusy = false)) 
+                newsItems = await Task.FromResult(new[] { "news item 1", "news item 2" });
+            newsItems.ToList().ForEach(Console.WriteLine);
 
-
+            // Disposable.Empty - When you do not need any special disposing functionality
+            Observable.Create<int>(o =>
+            {
+                o.OnNext(1);
+                o.OnCompleted();
+                return Disposable.Empty;
+            }).SubscribeConsole("Disposable.Empty");
 
             Console.ReadLine();
         }
     }
-
-    internal record SensorData(string Data);
 }

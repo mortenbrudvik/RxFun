@@ -109,4 +109,6 @@ namespace console
             Console.Out.WriteLine("Done sleeping");
         }
     }
+    internal record SensorData(string Data);
+
 }
